@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const URL = process.env.TARGET_URL || 'http://localhost:4174';
+const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+const context = await browser.newContext({ viewport: { width: 375, height: 800 } });
+const page = await context.newPage();
+await page.goto(URL, { waitUntil: 'networkidle' });
+await page.waitForTimeout(300);
+await page.screenshot({ path: '/tmp/pt-hero-375.png' });
+await context.close();
+await browser.close();

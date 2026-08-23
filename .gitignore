@@ -1,0 +1,5 @@
+node_modules
+dist
+dist-singlefile
+artifact-preview
+*.log
