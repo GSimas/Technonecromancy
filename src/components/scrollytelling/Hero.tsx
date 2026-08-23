@@ -6,7 +6,7 @@ export function Hero() {
   const { locale, t } = useLocale();
 
   return (
-    <header className="relative flex min-h-[92vh] flex-col justify-end border-b border-[var(--border-soft)] px-6 pb-16 pt-28 md:px-10">
+    <header id="inicio" className="relative flex min-h-[92vh] flex-col justify-end border-b border-[var(--border-soft)] px-6 pb-16 pt-32 md:px-10">
       <div
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
@@ -56,7 +56,17 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.55 }}
           className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--text-mute)]"
         >
-          <span>{meta.authors}</span>
+          <span>
+            <a
+              href="https://gustavosimas.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--text)] underline decoration-dotted underline-offset-4 transition-colors hover:text-[var(--amber)]"
+            >
+              Gustavo Simas da Silva
+            </a>{' '}
+            & Vânia Ribas Ulbricht
+          </span>
           <span aria-hidden="true">·</span>
           <span>{locale === 'pt' ? meta.affiliationPt : meta.affiliationEn}</span>
         </motion.div>

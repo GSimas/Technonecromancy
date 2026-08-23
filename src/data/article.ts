@@ -30,6 +30,27 @@ export const meta = {
     "Independent study that forms part of the primary author's doctoral research at the intersection of artificial intelligence and Science, Technology, and Society (STS) studies.",
   howToCite:
     'da Silva, G. S., & Ulbricht, V. R. (2026). Technonecromancy: Simulacra of Presence and the Politics of Death in the Age of Generative Artificial Intelligence. Trilogía Ciencia Tecnología Sociedad, 18(39), art. e3723. https://doi.org/10.22430/21457778.3723',
+  citations: {
+    apa: {
+      pt: 'da Silva, G. S., & Ulbricht, V. R. (2026). Tecnonecromancia: Simulacros de presença e a política da morte na era da inteligência artificial generativa. Trilogía Ciencia Tecnología Sociedad, 18(39), e3723. https://doi.org/10.22430/21457778.3723',
+      en: 'da Silva, G. S., & Ulbricht, V. R. (2026). Technonecromancy: Simulacra of presence and the politics of death in the age of generative artificial intelligence. Trilogía Ciencia Tecnología Sociedad, 18(39), e3723. https://doi.org/10.22430/21457778.3723',
+    },
+    abnt: {
+      pt: 'SILVA, Gustavo Simas da; ULBRICHT, Vânia Ribas. Tecnonecromancia: simulacros de presença e a política da morte na era da inteligência artificial generativa. Trilogía Ciencia Tecnología Sociedad, v. 18, n. 39, art. e3723, 2026. DOI: 10.22430/21457778.3723.',
+      en: 'SILVA, Gustavo Simas da; ULBRICHT, Vânia Ribas. Technonecromancy: simulacra of presence and the politics of death in the age of generative artificial intelligence. Trilogía Ciencia Tecnología Sociedad, v. 18, n. 39, art. e3723, 2026. DOI: 10.22430/21457778.3723.',
+    },
+    bibtex: `@article{silva2026technonecromancy,
+  author  = {da Silva, Gustavo Simas and Ulbricht, V{\\^a}nia Ribas},
+  title   = {Technonecromancy: Simulacra of Presence and the Politics of Death in the Age of Generative Artificial Intelligence},
+  journal = {Trilog{\\'i}a Ciencia Tecnolog{\\'i}a Sociedad},
+  volume  = {18},
+  number  = {39},
+  pages   = {e3723},
+  year    = {2026},
+  doi     = {10.22430/21457778.3723},
+  url     = {https://doi.org/10.22430/21457778.3723}
+}`,
+  },
   aiUseNotePt:
     'Nota de transparência dos autores: o preparo do manuscrito usou Google Gemini 2.5 Pro e ChatGPT 5 para pesquisa exploratória, tradução de termos e revisão ortográfica — sob supervisão integral dos autores, que retêm toda a responsabilidade pelo conteúdo (p. 18).',
   aiUseNoteEn:

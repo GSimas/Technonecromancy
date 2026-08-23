@@ -1,9 +1,11 @@
-import type { ComponentType } from 'react';
+import { useState, type ComponentType } from 'react';
 import { LocaleProvider, useLocale } from './hooks/useLocale';
+import { AccessibilityProvider } from './hooks/useAccessibility';
 import { useActiveSection } from './hooks/useActiveSection';
 import { sections, meta } from './data/article';
 import { SkipLink } from './components/ui/SkipLink';
-import { LocaleToggle } from './components/ui/LocaleToggle';
+import { Header } from './components/ui/Header';
+import { CitationModal } from './components/ui/CitationModal';
 import { ProgressNav } from './components/ui/ProgressNav';
 import { Hero } from './components/scrollytelling/Hero';
 import { Section } from './components/scrollytelling/Section';
@@ -30,15 +32,18 @@ const visualMap: Record<string, ComponentType> = {
 
 function AppShell() {
   const { locale } = useLocale();
+  const [isCiteOpen, setIsCiteOpen] = useState(false);
   const sectionIds = sections.map((s) => s.id);
   const activeId = useActiveSection(sectionIds);
 
   return (
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text)]">
       <SkipLink />
-      <div className="fixed right-4 top-4 z-40 md:right-6 md:top-6">
-        <LocaleToggle />
-      </div>
+      <Header
+        sections={sections}
+        activeId={activeId}
+        onOpenCite={() => setIsCiteOpen(true)}
+      />
       <ProgressNav sections={sections} activeId={activeId} />
 
       <Hero />
@@ -54,7 +59,12 @@ function AppShell() {
         })}
       </main>
 
-      <Footer />
+      <Footer onOpenCite={() => setIsCiteOpen(true)} />
+
+      <CitationModal
+        isOpen={isCiteOpen}
+        onClose={() => setIsCiteOpen(false)}
+      />
 
       <p className="sr-only" aria-live="polite">
         {locale === 'pt' ? `Idioma atual: português. ${meta.titlePt}` : `Current language: English. ${meta.titleEn}`}
@@ -66,7 +76,9 @@ function AppShell() {
 export default function App() {
   return (
     <LocaleProvider>
-      <AppShell />
+      <AccessibilityProvider>
+        <AppShell />
+      </AccessibilityProvider>
     </LocaleProvider>
   );
 }

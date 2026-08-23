@@ -1,7 +1,11 @@
 import { useLocale } from '../../hooks/useLocale';
 import { meta, evidenceLedger } from '../../data/article';
 
-export function Footer() {
+interface FooterProps {
+  onOpenCite?: () => void;
+}
+
+export function Footer({ onOpenCite }: FooterProps) {
   const { locale, t } = useLocale();
 
   return (
@@ -23,11 +27,24 @@ export function Footer() {
           {locale === 'pt' ? meta.aiUseNotePt : meta.aiUseNoteEn}
         </p>
 
+        {/* Citation Box */}
         <div className="mt-10 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5">
-          <h3 className="font-display text-base font-medium text-[var(--text)]">
-            {locale === 'pt' ? 'Como citar' : 'How to cite'}
-          </h3>
-          <p className="mt-2 text-sm leading-relaxed text-[var(--text-dim)]">{meta.howToCite}</p>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <h3 className="font-display text-base font-medium text-[var(--text)]">
+              {locale === 'pt' ? 'Como citar' : 'How to cite'}
+            </h3>
+            {onOpenCite && (
+              <button
+                type="button"
+                onClick={onOpenCite}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--amber)]/40 bg-[var(--amber)]/10 px-3 py-1 text-xs font-semibold text-[var(--amber)] transition-colors hover:bg-[var(--amber)] hover:text-[#0b0b0e]"
+              >
+                <span>❝</span>
+                <span>{locale === 'pt' ? 'Ver formatos (APA, ABNT, BibTeX)' : 'View formats (APA, ABNT, BibTeX)'}</span>
+              </button>
+            )}
+          </div>
+          <p className="mt-3 text-sm leading-relaxed text-[var(--text-dim)]">{meta.howToCite}</p>
           <a
             href={meta.doi}
             target="_blank"
@@ -39,6 +56,7 @@ export function Footer() {
           <p className="mt-2 text-xs text-[var(--text-mute)]">{locale === 'pt' ? meta.datesPt : meta.datesEn}</p>
         </div>
 
+        {/* Evidence Ledger */}
         <details className="mt-10 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5">
           <summary className="cursor-pointer font-display text-base font-medium text-[var(--text)]">
             {locale === 'pt'
@@ -65,9 +83,25 @@ export function Footer() {
           </ol>
         </details>
 
-        <p className="mt-12 text-xs text-[var(--text-mute)]">
-          {locale === 'pt' ? 'Página não oficial, produzida a partir do artigo publicado em acesso aberto.' : 'Unofficial companion page, produced from the openly published article.'}
-        </p>
+        {/* Footer Bottom / Developer attribution */}
+        <div className="mt-14 flex flex-col gap-3 border-t border-[var(--border-soft)] pt-8 text-xs text-[var(--text-mute)] sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            {locale === 'pt' ? 'Desenvolvido por ' : 'Developed by '}
+            <a
+              href="https://gustavosimas.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-[var(--amber)] underline decoration-dotted underline-offset-4 transition-colors hover:text-[var(--text)]"
+            >
+              Gustavo Simas
+            </a>
+          </p>
+          <p>
+            {locale === 'pt'
+              ? 'Página não oficial produzida a partir do artigo em acesso aberto.'
+              : 'Unofficial companion page produced from the open-access article.'}
+          </p>
+        </div>
       </div>
     </footer>
   );
